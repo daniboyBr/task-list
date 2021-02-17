@@ -3,6 +3,7 @@
 namespace DaniboyBr\TaskList\Collections;
 
 use PHPUnit\Framework\TestCase;
+use DaniboyBr\TaskList\Model\Task;
 use DaniboyBr\TaskList\Collections\TaskList;
 
 class TasksListTest extends TestCase
@@ -18,8 +19,8 @@ class TasksListTest extends TestCase
     public function testShouldAddAnewTaskInTasksList()
     {
         $tasks = new TasksList();
-        $task = new Task($title, $description);
-        $tasks->add($task);
+        $taskMock = $this->getMockBuilder(Task::class)->getMock();
+        $tasks->add($taskMock);
         $expected = 1;
         $this->assertCount(1, $tasks);
     }
