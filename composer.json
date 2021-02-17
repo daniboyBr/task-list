@@ -1,0 +1,21 @@
+{
+    "name": "daniboybr/lista-de-tarefas",
+    "description": "Uma simples lista de tarefas",
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Evangelista Pereira",
+            "email": "daniel.evangelista93@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "DaniboyBr\\TaskList\\": "src"
+        }
+    }
+}
