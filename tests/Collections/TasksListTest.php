@@ -20,7 +20,7 @@ class TasksListTest extends TestCase
     {
         $tasks = new TasksList();
         $taskMock = $this->getMockBuilder(Task::class)->getMock();
-        $tasks->add($taskMock);
+        $tasks->addTask($taskMock);
         $expected = 1;
         $this->assertCount(1, $tasks);
     }

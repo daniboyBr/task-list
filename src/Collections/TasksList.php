@@ -4,6 +4,7 @@ namespace DaniboyBr\TaskList\Collections;
 
 use Traversable;
 use ArrayIterator;
+use DaniboyBr\TaskList\Model\Task;
 use Ds\Collection;
 
 class TasksList implements Collection
@@ -48,5 +49,9 @@ class TasksList implements Collection
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this);
+    }
+
+    public function addTask(Task $task): void
+    {
     }
 }
