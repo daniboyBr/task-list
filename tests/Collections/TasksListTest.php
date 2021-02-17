@@ -12,6 +12,6 @@ class TasksListTest extends TestCase
         $tasks = new TasksList();
 
         $this->assertTrue($tasks->isEmpty());
-        $this->assertCont(0, $tasks);
+        $this->assertCount(0, $tasks);
     }
 }

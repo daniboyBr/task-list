@@ -17,5 +17,8 @@
         "psr-4": {
             "DaniboyBr\\TaskList\\": "src"
         }
+    },
+    "require": {
+        "php-ds/php-ds": "^1.3"
     }
 }
