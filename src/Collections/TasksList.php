@@ -50,7 +50,7 @@ class TasksList implements Collection
 
     public function getIterator(): Traversable
     {
-        return new ArrayIterator($this);
+        return new ArrayIterator($this->tasks);
     }
 
     public function addTask(Task $task): void

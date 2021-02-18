@@ -42,13 +42,15 @@ class TasksListTest extends TestCase
 
     public function testSholdNotSelectAtaskIfTasksListIsEmpty()
     {
+        $this->expectException(EmptyTasksListException::class);
+
         $tasks = new TasksList();
         $taskFinded = $tasks->getTask(1);
-        $this->expectException(EmptyTasksListException::class);
     }
 
     public function testShoudNotSelectIfAtaskIsNotInTasklist()
     {
+        $this->expectException(TaskNotFoundException::class);
 
         $taskMock = $this->getMockBuilder(Task::class)
                             ->addMethods(['getId'])
@@ -58,6 +60,5 @@ class TasksListTest extends TestCase
         $tasks = new TasksList();
         $tasks->addTask($taskMock);
         $taskFinded = $tasks->getTask(2);
-        $this->expectException(TaskNotFoundException::class);
     }
 }
