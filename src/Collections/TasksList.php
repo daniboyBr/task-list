@@ -4,8 +4,10 @@ namespace DaniboyBr\TaskList\Collections;
 
 use Traversable;
 use ArrayIterator;
-use DaniboyBr\TaskList\Model\Task;
 use Ds\Collection;
+use DaniboyBr\TaskList\Model\Task;
+use DaniboyBr\TaskList\Exceptions\TaskNotFoundException;
+use DaniboyBr\TaskList\Exceptions\EmptyTasksListException;
 
 class TasksList implements Collection
 {
@@ -53,5 +55,21 @@ class TasksList implements Collection
 
     public function addTask(Task $task): void
     {
+        array_push($this->tasks, $task);
+    }
+
+    public function getTask(int $taskId): Task
+    {
+        if ($this->isEmpty()) {
+            throw new EmptyTasksListException("Lista de tarefas vazia.");
+        }
+
+        foreach ($this->tasks as $task) {
+            if ($taskId == $task->getId()) {
+                return $task;
+            }
+        }
+
+        throw new TaskNotFoundException("Tarefa não encontrada");
     }
 }
