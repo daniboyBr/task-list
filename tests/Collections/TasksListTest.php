@@ -61,4 +61,27 @@ class TasksListTest extends TestCase
         $tasks->addTask($taskMock);
         $taskFinded = $tasks->getTask(2);
     }
+
+    public function testShoudRemoveASelectedTaskFromTasksList()
+    {
+        $this->expectException(TaskNotFoundException::class);
+
+        $taskMock = $this->getMockBuilder(Task::class)
+                            ->addMethods(['getId'])
+                            ->getMock();
+        $taskMock->expects($this->atLeastOnce())->method('getId')->willReturn(1);
+
+        $taskMock2 = $this->getMockBuilder(Task::class)
+                            ->addMethods(['getId'])
+                            ->getMock();
+        $taskMock2->expects($this->atLeastOnce())->method('getId')->willReturn(2);
+
+        $tasks = new TasksList();
+        $tasks->addTask($taskMock);
+        $tasks->addTask($taskMock2);
+
+        $taskId = 1;
+        $tasks->removeTask($tasks->getTask($taskId));
+        $findedTask = $tasks->getTask($taskId);
+    }
 }

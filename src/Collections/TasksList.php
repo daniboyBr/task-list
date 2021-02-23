@@ -72,4 +72,11 @@ class TasksList implements Collection
 
         throw new TaskNotFoundException("Tarefa não encontrada");
     }
+
+    public function removeTask(Task $taskToRemove): void
+    {
+        $this->tasks = array_filter($this->tasks, function ($task) use ($taskToRemove) {
+            return $task->getId() != $taskToRemove->getId();
+        });
+    }
 }
