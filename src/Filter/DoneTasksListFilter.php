@@ -5,9 +5,9 @@ namespace DaniboyBr\TaskList\Filter;
 use DaniboyBr\TaskList\Collections\TasksList;
 use DaniboyBr\TaskList\Filter\FilterTasksListInterface;
 
-class DoneTasksListFilter extends FilterTasksListInterface
+class DoneTasksListFilter implements FilterTasksListInterface
 {
-    public static function filterTasks(TasksList $taskList): TasksList
+    public static function filterList(TasksList $taskList): TasksList
     {
         $newList = new TasksList();
         foreach ($taskList as $task) {
