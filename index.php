@@ -10,6 +10,7 @@ use DaniboyBr\TaskList\Model\Task;
 use DaniboyBr\TaskList\Collections\TasksList;
 use DaniboyBr\TaskList\Filter\UndoneTasksFilter;
 use DaniboyBr\TaskList\Filter\DoneTasksListFilter;
+use DaniboyBr\TaskList\Validators\TaskValidator;
 
 $faker = Faker\Factory::create();
 

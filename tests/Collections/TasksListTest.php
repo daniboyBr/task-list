@@ -21,16 +21,17 @@ class TasksListTest extends TestCase
     public function testShouldAddAnewTaskInTasksList()
     {
         $tasks = new TasksList();
-        $taskMock = $this->getMockBuilder(Task::class)->getMock();
+        $taskMock = $this->getMockBuilder(Task::class)->disableOriginalConstructor()->getMock();
         $tasks->addTask($taskMock);
         $expected = 1;
         $this->assertCount(1, $tasks);
     }
 
-    public function testShouldSelectAtaskFromTaskList()
+    public function testShouldSelectATaskFromTaskList()
     {
         $taskMock = $this->getMockBuilder(Task::class)
-                            ->addMethods(['getId'])
+                            ->onlyMethods(['getId'])
+                            ->disableOriginalConstructor()
                             ->getMock();
         $taskMock->expects($this->once())->method('getId')->willReturn(1);
 
@@ -40,7 +41,7 @@ class TasksListTest extends TestCase
         $this->assertEquals($taskMock, $taskFinded);
     }
 
-    public function testSholdNotSelectAtaskIfTasksListIsEmpty()
+    public function testSholdNotSelectATaskIfTasksListIsEmpty()
     {
         $this->expectException(EmptyTasksListException::class);
 
@@ -48,12 +49,13 @@ class TasksListTest extends TestCase
         $taskFinded = $tasks->getTask(1);
     }
 
-    public function testShoudNotSelectIfAtaskIsNotInTasklist()
+    public function testShoudNotSelectIfATaskIsNotInTasklist()
     {
         $this->expectException(TaskNotFoundException::class);
 
         $taskMock = $this->getMockBuilder(Task::class)
-                            ->addMethods(['getId'])
+                            ->onlyMethods(['getId'])
+                            ->disableOriginalConstructor()
                             ->getMock();
         $taskMock->expects($this->once())->method('getId')->willReturn(1);
 
@@ -67,12 +69,14 @@ class TasksListTest extends TestCase
         $this->expectException(TaskNotFoundException::class);
 
         $taskMock = $this->getMockBuilder(Task::class)
-                            ->addMethods(['getId'])
+                            ->onlyMethods(['getId'])
+                            ->disableOriginalConstructor()
                             ->getMock();
         $taskMock->expects($this->atLeastOnce())->method('getId')->willReturn(1);
 
         $taskMock2 = $this->getMockBuilder(Task::class)
-                            ->addMethods(['getId'])
+                            ->onlyMethods(['getId'])
+                            ->disableOriginalConstructor()
                             ->getMock();
         $taskMock2->expects($this->atLeastOnce())->method('getId')->willReturn(2);
 
